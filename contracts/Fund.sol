@@ -7,15 +7,16 @@ import "./Market.sol";
 contract Fund is Owned {
     //Shares of assets that the fund has
     AssetShare[] shares;
+    string url;
 
     uint public numInvestors;
     uint public invested;
     // index on the list of owners to allow reverse lookup
     mapping(address => uint) public investorsMap;
-    address[] public investorsList;
 
-    function Fund() {
+    function Fund(string _url) {
         owner = msg.sender;
+        url = _url;
     }
 
     function investInOpertunity(Market market, Asset asset) onlyOwner {
