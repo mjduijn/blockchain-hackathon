@@ -23,16 +23,25 @@
 
 
 	function Personalpensionfund($scope, $state, PersonalpensionfundService,EthereumService) {
+		var address = "0xb46ef5a50681a9df51e0c31cfae5a4bb3614094a";
+
 		function fundDetails(id) {
 			$state.go("home.fund", {"id": id});
 		};
 		function refreshFundCounter(){
 			EthereumService.createPersonalPension("asddas",0);
-			EthereumService.getFunds({"address":""}).then(
-				function (data) {
-					vm.fundCounter(data);
-				}
-			);
+			vm.fundCounter = EthereumService.getFunds({"address":address});
+
+		};
+		function getFunds(){
+			var total = refreshFundCounter();
+			for(i =0; i < total; i++){
+				vm.funds.push(EthereumService.getFund(i));
+			}
+		}
+		function addFund(){
+			EthereumService.addFund(vm.addfund,address);
+			refreshFundCounter();
 		};
 
 		/*jshint validthis: true */
@@ -44,6 +53,8 @@
 			vm.funds = funds;
 		});
 		vm.refreshFundCounter = refreshFundCounter;
+		vm.addFund = addFund;
+		getFunds();
 
 
 		// vm.funds = [{
