@@ -1,17 +1,16 @@
 pragma solidity ^0.4.4;
 
 import "./Owned.sol";
-import "./AssetShare.sol";
+import "./TotalAsset.sol";
 import "./Market.sol";
 
 contract Fund is Owned {
     //Shares of assets that the fund has
-    AssetShare[] shares;
+    TotalAsset[] assets;
     string url;
 
     uint public numInvestors;
     uint public invested;
-    // index on the list of owners to allow reverse lookup
     mapping(address => uint) public investorsMap;
 
     function Fund(string _url) {
@@ -19,10 +18,14 @@ contract Fund is Owned {
         url = _url;
     }
 
-    function investInOpertunity(Market market, Asset asset) onlyOwner {
+    function investInOpertunity(TotalAsset asset) {
     }
 
-    function divestOpertunity(Market market, Asset asset) onlyOwner {
+    function divestOpertunity(TotalAsset asset) {
+    }
+
+    function valuate() returns (uint) {
+        return 0;
     }
 
     function requestParticipation() {
