@@ -36,5 +36,25 @@ contract PersonalPensionWalletTest {
         Assert.equal(ppw.getInvestment(defaultFund), 90, "default should be 90");
         Assert.equal(ppw.getInvestment(f), 9, "new fund should be 9");
     }
+    function testClearInvestment() {
+        Fund defaultFund = new Fund("http://myfund.nl");
+        PersonalPensionWallet ppw = new PersonalPensionWallet(this, defaultFund);
+
+        Fund f = new Fund("http://myfund.nl");
+
+        ppw.setInvestment(f, 10), 11, "");
+        Assert.equal(ppw.setInvestment(f, 10)
+        ppw.removeInvestment(f)
+        Assert.equal(ppw.getInvestment(f), 0, "new fund should be 0");
+        Assert.equal(ppw.getInvestment(defaultFund), 100, "fund should be 100");
+    }
+    function testInvest() {
+        Fund defaultFund = new Fund("http://myfund.nl");
+        PersonalPensionWallet ppw = new PersonalPensionWallet(this, defaultFund);
+
+        Fund f = new Fund("http://myfund.nl");
+
+        ppw.
+    }
 
 }

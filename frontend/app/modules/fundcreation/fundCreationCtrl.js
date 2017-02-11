@@ -13,7 +13,7 @@
 		.module('fundCreation')
 		.controller('FundCreationCtrl', FundCreation);
 
-	FundCreation.$inject = [];
+	FundCreation.$inject = ['EthereumService'];
 
 	/*
 	 * recommend
@@ -21,10 +21,15 @@
 	 * and bindable members up top.
 	 */
 
-	function FundCreation() {
+	function FundCreation(EthereumService) {
+		function metacoin() {
+			EthereumService.createFund()
+
+		}
+
 		/*jshint validthis: true */
 		var vm = this;
-
+		vm.metac = metacoin;
 	}
 
 })();

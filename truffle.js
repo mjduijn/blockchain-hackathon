@@ -4,12 +4,9 @@ module.exports = {
   build: new DefaultBuilder({
     "index.html": "index.html",
     "javascripts/app.js": [
+      "javascripts/web3.js",
       "javascripts/app.js"
-    ],
-    "stylesheets/app.css": [
-      "stylesheets/app.css"
-    ],
-    "images/": "images/"
+    ]
   }),
   networks: {
     development: {

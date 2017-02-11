@@ -113,6 +113,10 @@ contract PersonalPensionWallet {
     function kill() onlyGovernment {}
 
     function() payable {
-        //TODO invest
+        for(uint i=0; i<investmentCtr; i++) {
+            if(investmentPlan[i].shares > 0) {
+                investmentPlan[i].fund.requestParticipation().value(msg.value);
+            }
+        }
     }
 }

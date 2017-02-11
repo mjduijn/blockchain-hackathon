@@ -1,0 +1,15 @@
+{
+  "contract_name": "Market",
+  "abi": [],
+  "unlinked_binary": "0x6060604052346000575b60358060166000396000f30060606040525b60005600a165627a7a72305820bf58122b88f6a9f2dfc97d2debdec97aa73b418b629e1f4a384556a3d709dd130029",
+  "networks": {
+    "1486844843802": {
+      "events": {},
+      "links": {},
+      "address": "0x3b19af364a8f3acda86c632930e90c84b126d1cc",
+      "updated_at": 1486845080967
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1486845080967
+}

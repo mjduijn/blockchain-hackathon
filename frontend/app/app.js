@@ -23,7 +23,7 @@
 		'personalpensionfund',
 		'fundlist',
 		'fundCreation',
-		'investmentopertunity',
+		'investmentopertunity','ethereummod'
 	]);
 
 })();

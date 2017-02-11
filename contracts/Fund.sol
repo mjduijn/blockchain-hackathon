@@ -25,7 +25,7 @@ contract Fund is Owned {
     function divestOpertunity(Market market, Asset asset) onlyOwner {
     }
 
-    function requestParticipation(uint amount) {
+    function requestParticipation() {
     }
 
     function requestSellShares(uint amount) {
