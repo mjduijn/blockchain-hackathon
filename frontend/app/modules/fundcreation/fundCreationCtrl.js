@@ -22,14 +22,14 @@
 	 */
 
 	function FundCreation(EthereumService) {
-		function metacoin() {
-			EthereumService.createFund()
+		function createFund(fund) {
+			EthereumService.createFund(fund);
 
 		}
 
 		/*jshint validthis: true */
 		var vm = this;
-		vm.metac = metacoin;
+		vm.create = createFund;
 	}
 
 })();

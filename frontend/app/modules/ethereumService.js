@@ -15,9 +15,9 @@
 	// Inject your dependencies as .$inject = ['$http', 'someSevide'];
 	// function Name ($http, someSevide) {...}
 
-	Fund.$inject = ['$http'];
+	Fund.$inject = ['$http','$q'];
 
-	function Fund($http) {
+	function Fund($http,$q) {
 		var web3;
 		var contracts = {};
 		var account;
@@ -56,19 +56,47 @@
 
 			$http.get('/src/contracts/PersonalPensionWallet.json').then(function(result){
 				contracts["personalwallet"] = result.data;
+
 			}, null);
+
 
 		}
 		function getContract(name){
 			return contracts[name];
 		}
 
-		function createFund(){
+		function createFund(fund){
 			var contractjson = getContract("fund");
 			var contract = web3.eth.contract(contractjson.abi);
-			console.log(contract.new("dikkelul.nl",{data:contractjson.unlinked_binary,from: account,gas:2000000 }));
+			console.log(contract.new(fund.url,{data:contractjson.unlinked_binary,from: account,gas:2000000 }));
 
 		}
+
+		function getFunds(personalpension){
+			var deffered = $q.defer();
+			var contractjson = getContract("personalwallet");
+			var contract = web3.eth.contract(contractjson.abi).at(personalpension.address);
+			var length = contract.fundCtr();
+			console.log(length);
+			deffered.resolve(length);
+			return deffered;
+
+		}
+
+		function createPersonalPension(personalpension, account){
+			var contractjson = getContract("personalwallet");
+			var contract = web3.eth.contract(contractjson.abi);
+			console.log(contract.new(personalpension.ownerAddress, "0x3a451a25011e63f24167229689a1b9513818fc8c69b5e265c225a9a1c4ef6c19",{data:contractjson.unlinked_binary,from: accounts[account],gas:2000000 }));
+
+		}
+
+		function payPersonalPension(account, personalpension, weiAmount){
+			var contractjson = getContract("personalwallet");
+			var contract = web3.eth.contract(contractjson.abi).at(personalpension.address);
+			console.log(contract.sendTransaction({from:eth.accounts[account], to: personalpension, value: web3.toWei(weiAmount, "ether"), gas: 1000000}));
+
+		}
+
 		function metacoinFetch(){
 			var contractjson = web3.eth.contract("metacoin");
 			var contract = console.log(web3.eth.call(contractjson.abi).at(contractjson.networks["1486837279377"].address))
@@ -77,7 +105,9 @@
 		init();
 		return{
 			metacoinFetch: metacoinFetch,
-			createFund:createFund
+			createFund:createFund,
+			getFunds: getFunds,
+			createPersonalPension: createPersonalPension
 		}
 
 	}

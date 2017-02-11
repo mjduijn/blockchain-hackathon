@@ -19,8 +19,10 @@
 				</md-card-content>
 			</md-card>
 		</md-card-content>
+		<label>Total funds</label><p>{{vm.fundCounter}}</p>
 		<md-card-actions layout="row" layout-align="end-center">
 			<md-button>Details</md-button>
+			<md-button ng-click="vm.refreshFundCounter()">Refresh</md-button>
 		</md-card-actions>
 
 	</md-card>
