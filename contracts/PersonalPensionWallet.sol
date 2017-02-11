@@ -18,8 +18,9 @@ contract PersonalPensionWallet {
     address public owner;
 
     //references to Fund objects and the amount of shares we own in that fund
-    Fund[] funds;
-    Fund defaultFund;
+    Fund[] public funds;
+    uint public fundCtr;
+    Fund public defaultFund;
 
     //everything below this amount should go into the mandatory fund.
     uint constant defaultFundThreshold = 420;
@@ -34,6 +35,7 @@ contract PersonalPensionWallet {
         investmentCtr = 1;
         investmentPlan.length = investmentCtr;
         investmentPlan[investmentCtr - 1] = InvestmentPoint(defaultFund, totalShares);
+        fundCtr = 0;
     }
 
     //Modifiers
@@ -99,6 +101,10 @@ contract PersonalPensionWallet {
         }
     }
 
+    function getFund(uint idx) returns (Fund) {
+        return funds[idx]
+    }
+
     function getInvestment(Fund fund) returns (uint) {
         uint result = 0;
         for(uint i=0; i<investmentCtr; i++) {
@@ -115,7 +121,8 @@ contract PersonalPensionWallet {
     function() payable {
         for(uint i=0; i<investmentCtr; i++) {
             if(investmentPlan[i].shares > 0) {
-                investmentPlan[i].fund.requestParticipation().value(msg.value);
+                if(!investmentPlan[i].fund.call.gas(msg.value)( bytes4(sha3("requestParticipation()"))))
+                    throw;
             }
         }
     }
