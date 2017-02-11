@@ -38,24 +38,12 @@ contract PersonalPensionWallet {
         fundCtr = 0;
     }
 
-    //Modifiers
-    modifier onlyGovernment {
-        if (msg.sender != government) { throw; }
-        else
-          _;
-    }
-    modifier onlyOwner {
-        if (msg.sender != owner) { throw; }
-        else
-          _;
-    }
-
     //Functions
     function setExpectedAge(uint _expectedAge) {
         expectedAge = _expectedAge;
     }
 
-    function changeDefaultFund(Fund _fund) onlyGovernment {
+    function changeDefaultFund(Fund _fund) {
         defaultFund = _fund;
     }
 
@@ -73,7 +61,6 @@ contract PersonalPensionWallet {
                 isPresent = 1;
             }
         }
-        //uint desiredShares = ((100 / (desiredPctg - currentPctg)) * totalShares) - totalShares;
         uint desiredShares = ((100 * totalShares / (100 - desiredPctg))) - totalShares;
         if(isPresent > 0) {
             for(uint j=0; j<investmentCtr; j++) {
@@ -89,6 +76,20 @@ contract PersonalPensionWallet {
         }
 
         totalShares = totalShares + desiredShares;
+
+
+        uint found = 0;
+        for(i=0; i<fundCtr; i++) {
+            if(funds[i] == fund) {
+                found = 1;
+            }
+        }
+        if(found == 0) {
+            fundCtr = fundCtr + 1;
+            funds.length = fundCtr;
+            funds[funds.length - 1] = fund;
+        }
+
         return desiredShares;
     }
 
@@ -102,7 +103,7 @@ contract PersonalPensionWallet {
     }
 
     function getFund(uint idx) returns (Fund) {
-        return funds[idx]
+        return funds[idx];
     }
 
     function getInvestment(Fund fund) returns (uint) {
@@ -115,13 +116,24 @@ contract PersonalPensionWallet {
         return result;
     }
 
-    //Function can only be executed by the government when person died
-    function kill() onlyGovernment {}
-
     function() payable {
+        uint defaultPayout = 0;
+        uint remainder = 0;
+
+        if(msg.value > defaultFundThreshold) {
+            defaultPayout = defaultFundThreshold;
+            remainder = msg.value - defaultFundThreshold;
+        }
+        else {
+            remainder = 0;
+            defaultPayout = msg.value;
+        }
+        if(!defaultFund.call.gas(defaultPayout)( bytes4(sha3("requestParticipation()")))){
+            throw;
+        }
         for(uint i=0; i<investmentCtr; i++) {
             if(investmentPlan[i].shares > 0) {
-                if(!investmentPlan[i].fund.call.gas(msg.value)( bytes4(sha3("requestParticipation()"))))
+                if(!investmentPlan[i].fund.call.gas(remainder / (investmentPlan[i].shares / totalShares))( bytes4(sha3("requestParticipation()"))))
                     throw;
             }
         }
