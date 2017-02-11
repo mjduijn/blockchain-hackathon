@@ -279,5 +279,8 @@ ENV/
 node_modules/
 bower_components/
 
+virtualenv/
+.idea/
+*.sqlite3
 
 # End of https://www.gitignore.io/api/python,pycharm,intellij,webstorm,node,bower,yeoman,grunt
