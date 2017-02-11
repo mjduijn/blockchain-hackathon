@@ -1,0 +1,26 @@
+<div class="md-padding" flex layout-sm="column">
+	<h1 class="md-title">Fund List</h1>
+	<md-card>
+		<md-card-content>
+			<md-card ng-repeat="">
+				<h2 class="md-title">{{fund.name}}</h2>
+				<md-card-content>
+					<label>Description</label>
+					<p>{{fund.description}}</p>
+					<label>Asset Class</label>
+					<p>{{fund.assetClass}}</p>
+					<label>Risk profile</label>
+					<p>{{fund.risk}}</p>
+					<label>Valuation</label>
+					<p>{{fund.valuation}}</p>
+				</md-card-content>
+
+			</md-card>
+		</md-card-content>
+
+		<md-card-actions layout="row" layout-align="end-center">
+			<md-button ng-click="vm.create()">Create fund</md-button>
+		</md-card-actions>
+	</md-card>
+
+</div>

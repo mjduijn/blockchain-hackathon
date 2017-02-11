@@ -10,11 +10,15 @@
         "name": "personalpensionfund"
       },
       {
-        "name": "fund"
+        "name": "fundlist"
+      },
+      {
+        "name": "fundcreation"
       },
       {
         "name": "investmentopertunity"
       }
+
     ],
     "menu": [
       {
@@ -22,12 +26,18 @@
         "title": "Personalpensionfund"
       },
       {
-        "link": "fund",
-        "title": "Fund"
+        "link": "fundlist",
+        "title": "Funds"
       },
       {
         "link": "investmentopertunity",
         "title": "Investmentopertunity"
+      }
+
+    ],
+    "directives": [
+      {
+        "name": "fundcard"
       }
     ]
   }

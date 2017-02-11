@@ -1,0 +1,32 @@
+<div class="md-padding" flex layout-sm="column">
+	<h1 class="md-title">Create fund</h1>
+
+	<md-card>
+
+		<md-card-content>
+			<h2 class="md-title">
+				<md-input-container>
+					<label>Name</label>
+					<input ng-model="fund.name" required type="text">
+				</md-input-container>
+			</h2>
+
+			<md-input-container>
+				<label>Description</label>
+				<input ng-model="fund.description" required  type="text">
+			</md-input-container>
+
+			<md-input-container>
+				<label>URL</label>
+				<input ng-model="fund.url" required type="text">
+			</md-input-container>
+
+			<md-input-container>
+				<label>Asset class</label>
+				<input ng-model="fund.assetClass" required type="text">
+			</md-input-container>
+
+		</md-card-content>
+	</md-card>
+
+</div>

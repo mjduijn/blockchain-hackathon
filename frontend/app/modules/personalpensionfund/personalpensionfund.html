@@ -1,23 +1,43 @@
 <div class="md-padding" flex layout-sm="column">
-    <md-card>
-        <md-card-content>
-            <h2 class="md-title">My PersonalPensionFund</h2>
-			<label>Expected Age</label><p>{{expected-age}}</p>
-        </md-card-content>
+	<md-card>
+		<md-card-content>
+			<h2 class="md-title">My PersonalPensionFund</h2>
+			<label>Expected Age</label>
+			<p>{{expected-age}}</p>
+			<label>Default fund</label>
+			<md-card>
+				<md-card-content>
+					<h2 class="md-title">{{defaultFund.name}}</h2>
+					<label>Description</label>
+					<p>{{defaultFund.Description}}</p>
+					<label>Shares</label>
+					<p></p>
+					<label>URL</label>
+					<p>{{defaultFund.url}}</p>
+					<label>Hash</label>
+					<p>{{defaultFund.contractID}}</p>
+				</md-card-content>
+			</md-card>
+		</md-card-content>
 		<md-card-actions layout="row" layout-align="end-center">
 			<md-button>Details</md-button>
 		</md-card-actions>
-		<div layout="row" flex>
-			<div class="parent" layout="row" ng-repeat="fund in vm.funds" flex>
-				<md-card>
-					<md-card-content>
-						<h2 class="md-title">{{fund.name}}</h2>
-					</md-card-content>
-					<md-card-actions layout="row" layout-align="end-center">
-						<md-button>Details</md-button>
-					</md-card-actions>
-				</md-card>
-			</div>
+
+	</md-card>
+	<div layout="row" flex>
+		<div class="parent" layout="row" ng-repeat="fund in vm.funds" flex>
+			<md-card>
+				<md-card-content>
+					<h2 class="md-title">{{fund.name}}</h2>
+					<label>Description</label>
+					<p>
+						{{fund.description}}
+					</p>
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="end-center">
+					<md-button ng-click="vm.fundDetails(fund.id)">Details</md-button>
+				</md-card-actions>
+			</md-card>
 		</div>
-    </md-card>
+	</div>
 </div>

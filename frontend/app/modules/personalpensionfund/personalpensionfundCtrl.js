@@ -1,32 +1,46 @@
-(function() {
+(function () {
 	'use strict';
 
 	/**
-	* @ngdoc function
-	* @name app.controller:personalpensionfundCtrl
-	* @description
-	* # personalpensionfundCtrl
-	* Controller of the app
-	*/
+	 * @ngdoc function
+	 * @name app.controller:personalpensionfundCtrl
+	 * @description
+	 * # personalpensionfundCtrl
+	 * Controller of the app
+	 */
 
-  	angular
+	angular
 		.module('personalpensionfund')
 		.controller('PersonalpensionfundCtrl', Personalpensionfund);
 
-		Personalpensionfund.$inject = [];
+	Personalpensionfund.$inject = ["$scope", "$state", "PersonalpensionfundService"];
 
-		/*
-		* recommend
-		* Using function declarations
-		* and bindable members up top.
-		*/
-		var funds = [];
-		funds.append({name: "bla"})
+	/*
+	 * recommend
+	 * Using function declarations
+	 * and bindable members up top.
+	 */
 
-		function Personalpensionfund() {
-			/*jshint validthis: true */
-			var vm = this;
 
+	function Personalpensionfund($scope, $state, PersonalpensionfundService) {
+		function fundDetails(id) {
+			$state.go("home.personalpensionfund.fund", {"id": id});
 		}
+
+		/*jshint validthis: true */
+		var vm = this;
+		vm.fundDetails = fundDetails;
+		vm.funds = [];
+		var promise = PersonalpensionfundService.getPersonalPensionFundDetails();
+		promise.then(function (funds) {
+			vm.funds = funds;
+		});
+		// vm.funds = [{
+		// 	"name": "bla",
+		// 	"description": "dasdasdsaasd"
+		// }];
+
+
+	}
 
 })();

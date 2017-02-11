@@ -1,4 +1,4 @@
-(function() {
+(function () {
 	'use strict';
 
 	/**
@@ -9,16 +9,16 @@
 	 * Service of the app
 	 */
 
-  	angular
+	angular
 		.module('investmentopertunity')
 		.factory('InvestmentopertunityService', Investmentopertunity);
-		// Inject your dependencies as .$inject = ['$http', 'someSevide'];
-		// function Name ($http, someSevide) {...}
+	// Inject your dependencies as .$inject = ['$http', 'someSevide'];
+	// function Name ($http, someSevide) {...}
 
-		Investmentopertunity.$inject = ['$http'];
+	Investmentopertunity.$inject = ['$http'];
 
-		function Investmentopertunity ($http) {
+	function Investmentopertunity($http) {
 
-		}
+	}
 
 })();

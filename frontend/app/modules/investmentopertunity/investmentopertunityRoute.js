@@ -10,14 +10,14 @@
 
 angular.module('investmentopertunity')
 	.config(['$stateProvider', function ($stateProvider) {
-		
+
 		$stateProvider
 			.state('home.investmentopertunity', {
-				url:'/investmentopertunity',
+				url: '/investmentopertunity',
 				templateUrl: 'app/modules/investmentopertunity/investmentopertunity.html',
 				controller: 'InvestmentopertunityCtrl',
 				controllerAs: 'vm'
 			});
 
-		
+
 	}]);

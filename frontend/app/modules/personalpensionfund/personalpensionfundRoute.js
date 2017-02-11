@@ -10,14 +10,20 @@
 
 angular.module('personalpensionfund')
 	.config(['$stateProvider', function ($stateProvider) {
-		
+
 		$stateProvider
 			.state('home.personalpensionfund', {
-				url:'/personalpensionfund',
+				url: '/personalpensionfund',
 				templateUrl: 'app/modules/personalpensionfund/personalpensionfund.html',
 				controller: 'PersonalpensionfundCtrl',
 				controllerAs: 'vm'
+			})
+			.state('home.personalpensionfund.fund', {
+				url: '^l/fund/:id',
+				templateUrl: 'app/modules/fund/fundlist.html',
+				controller: 'fundCtrl',
+				controllerAs: 'vm'
 			});
 
-		
+
 	}]);

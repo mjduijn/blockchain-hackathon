@@ -1,30 +1,30 @@
-(function() {
+(function () {
 	'use strict';
 
 	/**
-	* @ngdoc function
-	* @name app.controller:investmentopertunityCtrl
-	* @description
-	* # investmentopertunityCtrl
-	* Controller of the app
-	*/
+	 * @ngdoc function
+	 * @name app.controller:investmentopertunityCtrl
+	 * @description
+	 * # investmentopertunityCtrl
+	 * Controller of the app
+	 */
 
-  	angular
+	angular
 		.module('investmentopertunity')
 		.controller('InvestmentopertunityCtrl', Investmentopertunity);
 
-		Investmentopertunity.$inject = [];
+	Investmentopertunity.$inject = [];
 
-		/*
-		* recommend
-		* Using function declarations
-		* and bindable members up top.
-		*/
+	/*
+	 * recommend
+	 * Using function declarations
+	 * and bindable members up top.
+	 */
 
-		function Investmentopertunity() {
-			/*jshint validthis: true */
-			var vm = this;
+	function Investmentopertunity() {
+		/*jshint validthis: true */
+		var vm = this;
 
-		}
+	}
 
 })();

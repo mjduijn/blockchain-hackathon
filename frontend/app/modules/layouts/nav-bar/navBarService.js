@@ -27,13 +27,23 @@
 					},
 			    
 					{
-						link: 'fund',
-							name: 'Fund'
+						link: 'fundlist',
+							name: 'Funds'
 					},
 			    
 					{
 						link: 'investmentopertunity',
 							name: 'Investmentopertunity'
+					},
+			    
+					{
+						link: 'test',
+							name: 'Test'
+					},
+			    
+					{
+						link: 'bla',
+							name: 'Bla'
 					},
 			    
 		  	];

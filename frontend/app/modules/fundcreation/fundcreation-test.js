@@ -9,7 +9,7 @@
 	 * Test of the app
 	 */
 
-	describe('fundlist test', function () {
+	describe('fund test', function () {
 		var controller = null, $scope = null;
 
 		beforeEach(function () {
@@ -18,7 +18,7 @@
 
 		beforeEach(inject(function ($controller, $rootScope) {
 			$scope = $rootScope.$new();
-			controller = $controller('FundListCtrl', {
+			controller = $controller('FundCtrl', {
 				$scope: $scope
 			});
 		}));

@@ -21,7 +21,8 @@
 		'ui.router',
 		'home',
 		'personalpensionfund',
-		'fund',
+		'fundlist',
+		'fundCreation',
 		'investmentopertunity',
 	]);
 

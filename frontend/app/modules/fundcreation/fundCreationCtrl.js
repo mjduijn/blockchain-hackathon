@@ -10,10 +10,10 @@
 	 */
 
 	angular
-		.module('fundlist')
-		.controller('FundListCtrl', FundList);
+		.module('fundCreation')
+		.controller('FundCreationCtrl', FundCreation);
 
-	FundList.$inject = ['$state'];
+	FundCreation.$inject = [];
 
 	/*
 	 * recommend
@@ -21,14 +21,9 @@
 	 * and bindable members up top.
 	 */
 
-
-	function FundList($state) {
-		function goTocreate(){
-			$state.go('home.fundcreation');
-		}
+	function FundCreation() {
 		/*jshint validthis: true */
 		var vm = this;
-		vm.create = goTocreate;
 
 	}
 

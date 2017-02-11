@@ -8,14 +8,14 @@
  * Route of the app
  */
 
-angular.module('fundlist')
+angular.module('fundCreation')
 	.config(['$stateProvider', function ($stateProvider) {
 
 		$stateProvider
-			.state('home.fundlist', {
-				url: '/fund/',
-				templateUrl: 'app/modules/fund/fundlist.html',
-				controller: 'FundListCtrl',
+			.state('home.fundcreation', {
+				url: '/fund/create',
+				templateUrl: 'app/modules/fundcreation/fundCreation.html',
+				controller: 'FundCreationCtrl',
 				controllerAs: 'vm'
 			});
 

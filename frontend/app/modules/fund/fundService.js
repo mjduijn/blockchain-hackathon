@@ -1,4 +1,4 @@
-(function() {
+(function () {
 	'use strict';
 
 	/**
@@ -9,16 +9,16 @@
 	 * Service of the app
 	 */
 
-  	angular
-		.module('fund')
+	angular
+		.module('fundlist')
 		.factory('FundService', Fund);
-		// Inject your dependencies as .$inject = ['$http', 'someSevide'];
-		// function Name ($http, someSevide) {...}
+	// Inject your dependencies as .$inject = ['$http', 'someSevide'];
+	// function Name ($http, someSevide) {...}
 
-		Fund.$inject = ['$http'];
+	Fund.$inject = ['$http'];
 
-		function Fund ($http) {
-
-		}
+	function Fund($http) {
+		$http.get('/', config).then(successCallback, errorCallback);
+	}
 
 })();
