@@ -71,7 +71,8 @@ contract PersonalPensionWallet {
                 isPresent = 1;
             }
         }
-        uint desiredShares = ((100 / (desiredPctg - currentPctg)) * totalShares) - totalShares;
+        //uint desiredShares = ((100 / (desiredPctg - currentPctg)) * totalShares) - totalShares;
+        uint desiredShares = ((100 * totalShares / (100 - desiredPctg))) - totalShares;
         if(isPresent > 0) {
             for(uint j=0; j<investmentCtr; j++) {
                 if(investmentPlan[j].fund == fund) {
