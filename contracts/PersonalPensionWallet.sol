@@ -102,7 +102,7 @@ contract PersonalPensionWallet {
         uint result = 0;
         for(uint i=0; i<investmentCtr; i++) {
             if(investmentPlan[i].fund == fund) {
-                result = (investmentPlan[i].shares / totalShares) * 100;
+                result = (investmentPlan[i].shares * 100 / totalShares);
             }
         }
         return result;
