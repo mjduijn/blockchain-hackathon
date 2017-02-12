@@ -54,4 +54,8 @@ contract Fund is Owned {
     function requestParticipation() payable {
         investorsMap[msg.sender] = msg.value / valuation();
     }
+
+    function requestParticipation2(uint participation) {
+        investorsMap[msg.sender] = participation;
+    }
 }
