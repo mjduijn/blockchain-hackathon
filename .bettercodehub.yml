@@ -1,5 +1,10 @@
+exclude:
+- /app/javascripts/app.js
+- /frontend/Gruntfile.js
+- /frontend/app/assets/js/.*
+- /frontend/karma.conf.js
 component_depth: 1
 languages:
-- python
 - javascript
+- python
 - solidity
