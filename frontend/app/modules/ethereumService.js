@@ -42,10 +42,17 @@
 			accounts = accs;
 			account = accounts[0];
 		});
+		function sleep(seconds) {
+			var e = new Date().getTime() + (seconds * 1000);
+			while (new Date().getTime() <= e);
+
+		}
 		function init(){
 			$http.get('/src/contracts/Asset.json').then(function(result){
 				contracts["asset"] = result.data;
 			}, null);
+
+
 			$http.get('/src/contracts/Fund.json').then(function(result){
 				contracts["fund"] = result.data;
 			}, null);
@@ -58,7 +65,6 @@
 				contracts["personalwallet"] = result.data;
 
 			}, null);
-
 
 		}
 		function getContract(name){
@@ -73,13 +79,26 @@
 		}
 
 		function getFunds(personalpension){
-			var deffered = $q.defer();
 			var contractjson = getContract("personalwallet");
 			var contract = web3.eth.contract(contractjson.abi).at(personalpension.address);
 			var length = contract.fundCtr();
 			console.log(length);
-			deffered.resolve(length);
-			return deffered;
+			return length;
+		}
+
+		function getFund(personalpension,index){
+			var contractjson = getContract("personalwallet");
+			var contract = web3.eth.contract(contractjson.abi).at(personalpension.address);
+			var fund = contract.getFund(index);
+			console.log(fund);
+			return fund;
+		}
+
+
+		function addFund(fund,address){
+			var contractjson = getContract("personalwallet");
+			var contract = web3.eth.contract(contractjson.abi).at(address);
+			contract.setInvestment(fund,20,{"from": account,gas:1000000 });
 
 		}
 
@@ -93,8 +112,13 @@
 		function payPersonalPension(account, personalpension, weiAmount){
 			var contractjson = getContract("personalwallet");
 			var contract = web3.eth.contract(contractjson.abi).at(personalpension.address);
-			console.log(contract.sendTransaction({from:eth.accounts[account], to: personalpension, value: web3.toWei(weiAmount, "ether"), gas: 1000000}));
+			console.log(contract.sendTransaction({from:web3.eth.accounts[account], to: personalpension, value: web3.toWei(weiAmount, "ether"), gas: 1000000}));
 
+		}
+		function getAddressFromTX(tx) {
+			var data = web3.eth.filter(tx);
+			console.log(data);
+			return data;
 		}
 
 		function metacoinFetch(){
@@ -107,7 +131,10 @@
 			metacoinFetch: metacoinFetch,
 			createFund:createFund,
 			getFunds: getFunds,
-			createPersonalPension: createPersonalPension
+			createPersonalPension: createPersonalPension,
+			getAddressFromTX: getAddressFromTX,
+			addFund: addFund,
+			getFund: getFund
 		}
 
 	}
