@@ -6,7 +6,8 @@ import "./Market.sol";
 
 contract Fund is Owned {
     //Shares of assets that the fund has
-    TotalAsset[] assets;
+    TotalAsset[] public assets;
+    uint public assetCtr;
     string url;
 
     uint public numInvestors;
@@ -16,21 +17,41 @@ contract Fund is Owned {
     function Fund(string _url) {
         owner = msg.sender;
         url = _url;
+        assetCtr = 0;
     }
 
     function investInOpertunity(TotalAsset asset) {
+        assetCtr = assetCtr + 1;
+        assets.length = assetCtr;
+        assets[assetCtr - 1] = asset;
     }
 
     function divestOpertunity(TotalAsset asset) {
+        for(uint i=0; i<assetCtr; i++) {
+            if(assets[i] == asset) {
+                delete assets[i];
+            }
+        }
     }
 
-    function valuate() returns (uint) {
-        return 0;
+    function valuation() returns (uint) {
+        uint result = 0;
+        for(uint i=0; i<assetCtr; i++) {
+            result = result + assets[i].valuation();
+        }
+        return result;
     }
 
-    function requestParticipation() {
+    function requestSellShares() {
+        if(!msg.sender.send(investorsMap[msg.sender] * valuation()))
+            throw;
     }
 
-    function requestSellShares(uint amount) {
+    function getValue(address _address) returns (uint) {
+        return investorsMap[msg.sender] * valuation();
+    }
+
+    function requestParticipation() payable {
+        investorsMap[msg.sender] = msg.value / valuation();
     }
 }

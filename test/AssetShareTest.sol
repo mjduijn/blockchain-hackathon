@@ -5,7 +5,7 @@ import "truffle/DeployedAddresses.sol";
 import "../contracts/Asset.sol";
 import "../contracts/AssetShare.sol";
 
-contract TestAssetShare {
+contract AssetShareTest {
   function testInitialAsssetSetup() {
     address expected = 0x8ea108af610f99a0f65b292a9608f3e99f201bc8;
 
