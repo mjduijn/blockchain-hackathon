@@ -129,14 +129,9 @@ contract PersonalPensionWallet {
             defaultPayout = msg.value;
         }
         defaultFund.requestParticipation.value(defaultPayout)();
-        //if(!defaultFund.call.gas(defaultPayout)( bytes4(sha3("requestParticipation()")))){
-        //    throw;
-        //}
         for(uint i=0; i<investmentCtr; i++) {
             if(investmentPlan[i].shares > 0) {
                 investmentPlan[i].fund.requestParticipation.value(investmentPlan[i].shares / totalShares)();
-              //  if(!investmentPlan[i].fund.call.gas(remainder / (investmentPlan[i].shares / totalShares))( bytes4(sha3("requestParticipation()"))))
-              //      throw;
             }
         }
     }
