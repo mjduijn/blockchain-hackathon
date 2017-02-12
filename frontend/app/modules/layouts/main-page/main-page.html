@@ -38,6 +38,11 @@
 		</md-menu>
 	</div>
 </md-toolbar>
+<md-toolbar>
+	<md-list>
+		<md-list-item ng-repeat="account in accounts">{{account}}</md-list-item>
+	</md-list>
+</md-toolbar>
 <md-toolbar class="md-hue-1" ng-show="showSearch">
 	<div class="md-toolbar-tools">
 		<md-button ng-click="showSearch = !showSearch" aria-label="Back">

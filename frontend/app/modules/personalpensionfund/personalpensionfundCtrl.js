@@ -29,14 +29,13 @@
 			$state.go("home.fund", {"id": id});
 		};
 		function refreshFundCounter(){
-			EthereumService.createPersonalPension("asddas",0);
 			vm.fundCounter = EthereumService.getFunds({"address":address});
-
+			getFunds();
 		};
 		function getFunds(){
-			var total = refreshFundCounter();
-			for(i =0; i < total; i++){
-				vm.funds.push(EthereumService.getFund(i));
+			var i;
+			for(i =0; i < vm.fundCounter; i++){
+				vm.funds.push(EthereumService.getFund({"address":address},i));
 			}
 		}
 		function addFund(){
@@ -54,8 +53,6 @@
 		});
 		vm.refreshFundCounter = refreshFundCounter;
 		vm.addFund = addFund;
-		getFunds();
-
 
 		// vm.funds = [{
 		// 	"name": "bla",
