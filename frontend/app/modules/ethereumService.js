@@ -47,6 +47,9 @@
 			while (new Date().getTime() <= e);
 
 		}
+		function accounts() {
+			return accounts;
+		}
 		function init(){
 			$http.get('/src/contracts/Asset.json').then(function(result){
 				contracts["asset"] = result.data;
@@ -134,7 +137,8 @@
 			createPersonalPension: createPersonalPension,
 			getAddressFromTX: getAddressFromTX,
 			addFund: addFund,
-			getFund: getFund
+			getFund: getFund,
+			accounts: accounts
 		}
 
 	}
