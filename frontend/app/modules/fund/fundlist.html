@@ -2,7 +2,7 @@
 	<h1 class="md-title">Fund List</h1>
 	<md-card>
 		<md-card-content>
-			<md-card ng-repeat="">
+			<md-card ng-repeat="fund in vm.funds">
 				<h2 class="md-title">{{fund.name}}</h2>
 				<md-card-content>
 					<label>Description</label>
@@ -10,7 +10,7 @@
 					<label>Asset Class</label>
 					<p>{{fund.assetClass}}</p>
 					<label>Risk profile</label>
-					<p>{{fund.risk}}</p>
+					<p>{{fund.riskProfile}}</p>
 					<label>Valuation</label>
 					<p>{{fund.valuation}}</p>
 					<label>Address</label>

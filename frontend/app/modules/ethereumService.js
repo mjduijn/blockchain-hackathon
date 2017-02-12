@@ -91,8 +91,11 @@
 
 		function getFund(personalpension,index){
 			var contractjson = getContract("personalwallet");
+			var fund = getContract("fund");
+
 			var contract = web3.eth.contract(contractjson.abi).at(personalpension.address);
-			var fund = contract.getFund(index);
+			var fundaddress = contract.getFund(index,{"from": account, gas: 100000});
+			var fund = web3.eth.contract(fund.abi).at(fundaddress);
 			console.log(fund);
 			return fund;
 		}

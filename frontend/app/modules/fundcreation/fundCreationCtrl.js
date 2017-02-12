@@ -13,7 +13,7 @@
 		.module('fundCreation')
 		.controller('FundCreationCtrl', FundCreation);
 
-	FundCreation.$inject = ['EthereumService'];
+	FundCreation.$inject = ['EthereumService','FundService'];
 
 	/*
 	 * recommend
@@ -21,9 +21,10 @@
 	 * and bindable members up top.
 	 */
 
-	function FundCreation(EthereumService) {
+	function FundCreation(EthereumService, FundService) {
 		function createFund(fund) {
 			EthereumService.createFund(fund);
+			FundService.addFund(fund);
 
 		}
 

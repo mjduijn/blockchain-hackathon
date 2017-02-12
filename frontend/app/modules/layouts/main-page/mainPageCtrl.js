@@ -13,7 +13,7 @@
 		.module('pensionfunds-frontend')
 		.controller('LayoutCtrl', Layout);
 
-	Layout.$inject = ['$mdSidenav', '$cookies', '$state', '$mdToast', '$mdDialog'];
+	Layout.$inject = ['$mdSidenav', '$cookies', '$state', '$mdToast', '$mdDialog','EthereumService'];
 
 	/*
 	 * recommend
@@ -21,9 +21,11 @@
 	 * and bindable members up top.
 	 */
 
-	function Layout($mdSidenav, $cookies, $state, $mdToast, $mdDialog) {
+	function Layout($mdSidenav, $cookies, $state, $mdToast, $mdDialog, EthereumService) {
 		/*jshint validthis: true */
 		var vm = this;
+		var accounts = EthereumService.accounts();
+
 
 		vm.toggleSidenav = function (menuId) {
 			$mdSidenav(menuId).toggle();
