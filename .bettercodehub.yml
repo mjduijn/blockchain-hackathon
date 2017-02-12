@@ -1,9 +1,6 @@
 exclude:
-- /app/javascripts/app.js
 - /frontend/Gruntfile.js
 - /frontend/app/assets/js/.*
-- /frontend/app/modules/investmentopertunity/.*
-- /frontend/app/modules/layouts/.*
 - /frontend/karma.conf.js
 component_depth: 1
 languages:
