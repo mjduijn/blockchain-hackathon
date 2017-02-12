@@ -6,4 +6,8 @@ contract TotalAsset {
     function setValuation(uint _valuation) {
         valuation = _valuation;
     }
+
+    function TotalAsset() {
+        valuation = 42;
+    }
 }

@@ -1,10 +1,8 @@
 pragma solidity ^0.4.4;
 
-import "./Owned.sol";
 import "./TotalAsset.sol";
-import "./Market.sol";
 
-contract Fund is Owned {
+contract Fund {
     //Shares of assets that the fund has
     TotalAsset[] public assets;
     uint public assetCtr;
@@ -15,7 +13,6 @@ contract Fund is Owned {
     mapping(address => uint) public investorsMap;
 
     function Fund(string _url) {
-        owner = msg.sender;
         url = _url;
         assetCtr = 0;
     }
@@ -48,14 +45,14 @@ contract Fund is Owned {
     }
 
     function getValue(address _address) returns (uint) {
-        return investorsMap[msg.sender] * valuation();
+        return investorsMap[_address] * valuation();
     }
 
     function requestParticipation() payable {
         investorsMap[msg.sender] = msg.value / valuation();
     }
 
-    function requestParticipation2(uint participation) {
-        investorsMap[msg.sender] = participation;
+    function requestParticipation2(uint participation, address _address) {
+        investorsMap[_address] = participation;
     }
 }

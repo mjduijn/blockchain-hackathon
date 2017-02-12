@@ -68,6 +68,10 @@
 				contracts["personalwallet"] = result.data;
 
 			}, null);
+			$http.get('/src/contracts/TotalAsset.json').then(function(result){
+				contracts["totalAsset"] = result.data;
+
+			}, null);
 
 		}
 		function getContract(name){
@@ -79,6 +83,11 @@
 			var contract = web3.eth.contract(contractjson.abi);
 			console.log(contract.new(fund.url,{data:contractjson.unlinked_binary,from: account,gas:2000000 }));
 
+		}
+		function createAsset(asset) {
+			var contractjson = getContract("totalAsset");
+			var contract = web3.eth.contract(contractjson.abi);
+			console.log(contract.new(fund.url,{data:contractjson.unlinked_binary,from: account,gas:2000000 }));
 		}
 
 		function getFunds(personalpension){
@@ -97,12 +106,26 @@
 			return fund;
 		}
 
-
 		function addFund(fund,address){
 			var contractjson = getContract("personalwallet");
 			var contract = web3.eth.contract(contractjson.abi).at(address);
 			contract.setInvestment(fund,20,{"from": account,gas:1000000 });
 
+		}
+		function addAsset(fund,address,account){
+			var contractjson = getContract("fund");
+			var contract = web3.eth.contract(contractjson.abi).at(address);
+			contract.requestParticipation2(fund,20,account,{"from": account,gas:1000000 });
+		}
+		function getFundValuation(fund,address,account){
+			var contractjson = getContract("fund");
+			var contract = web3.eth.contract(contractjson.abi).at(fund.address);
+			console.log(contract.valuation({"from": account,gas:1000000 }));
+		}
+		function getUrl(fund,address){
+			var contractjson = getContract("fund");
+			var contract = web3.eth.contract(contractjson.abi).at(address);
+			console.log(fund.valuation(fund,account,{"from": account,gas:1000000 }));
 		}
 
 		function createPersonalPension(personalpension, account){
@@ -116,7 +139,12 @@
 			var contractjson = getContract("personalwallet");
 			var contract = web3.eth.contract(contractjson.abi).at(personalpension.address);
 			console.log(contract.sendTransaction({from:web3.eth.accounts[account], to: personalpension, value: web3.toWei(weiAmount, "ether"), gas: 1000000}));
+		}
 
+		function addInvestmentPlan(account, personalpension, fund, percentage){
+			var contractjson = getContract("personalwallet");
+			var contract = web3.eth.contract(contractjson.abi).at(personalpension.address);
+			console.log(contract.setInvestment(fund, percentage, {from:web3.eth.accounts[account], to: personalpension, value: web3.toWei(weiAmount, "ether"), gas: 1000000}));
 		}
 		function getAddressFromTX(tx) {
 			var data = web3.eth.filter(tx);
